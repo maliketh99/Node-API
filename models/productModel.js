@@ -1,23 +1,35 @@
 const mongoose = require('mongoose')
 
-const productSchema = mongoose.Schema(
+const rewardPoints = mongoose.Schema(
     {
-        name: {
+        transactionID: {
             type: String,
-            required: [true, "Please enter a product name"]
+            required: true
         },
-        quantity: {
+        transactionType: {
+            type: String,
+            required: true
+        },
+        transactionDescription: {
+            type: String,
+            required: true
+        },
+        transactionDate: {
+            type: Date,
+            required: true
+        },
+        amount: {
             type: Number,
             required: true,
             default: 0
         },
-        price: {
-            type: Number,
-            required: true,
-        },
-        image: {
+        accountID: {
             type: String,
-            required: false,
+            required: true
+        },
+        activityID: {
+            type: String,
+            required: true
         }
     },
     {
@@ -25,7 +37,6 @@ const productSchema = mongoose.Schema(
     }
 )
 
+const RewardPoints = mongoose.model('RewardPoints', rewardPointsSchema);
 
-const Product = mongoose.model('Product', productSchema);
-
-module.exports = Product;
+module.exports = RewardPoints;
